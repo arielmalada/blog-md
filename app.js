@@ -142,36 +142,7 @@ function showPost(postId) {
         sanitize: false
       });
 
-      // Parse markdown content first
-      let htmlContent = marked.parse(post.content);
-
-      // Post-process HTML to replace emoji shortcodes with Unicode emojis
-      htmlContent = htmlContent
-        .replace(/:white_check_mark:/g, '✅')
-        .replace(/:rocket:/g, '🚀')
-        .replace(/:heavy_check_mark:/g, '✔️')
-        .replace(/:x:/g, '❌')
-        .replace(/:star:/g, '⭐')
-        .replace(/:arrow_right:/g, '➡️')
-        .replace(/:gear:/g, '⚙️')
-        .replace(/:book:/g, '📚')
-        .replace(/:computer:/g, '💻')
-        .replace(/:chart_with_upwards_trend:/g, '📈')
-        .replace(/:link:/g, '🔗')
-        .replace(/:warning:/g, '⚠️')
-        .replace(/:information_source:/g, 'ℹ️')
-        .replace(/:bulb:/g, '💡')
-        .replace(/:memo:/g, '📝')
-        .replace(/:package:/g, '📦')
-        .replace(/:zap:/g, '⚡')
-        .replace(/:tada:/g, '🎉')
-        .replace(/:100:/g, '💯')
-        .replace(/:thumbsup:/g, '👍')
-        .replace(/:thumbsdown:/g, '👎')
-        .replace(/:point_right:/g, '👉')
-        .replace(/:point_left:/g, '👈');
-
-      postContent.innerHTML = htmlContent;
+      postContent.innerHTML = marked.parse(post.content);
     } catch (error) {
       console.error('Error rendering markdown:', error);
       // Fallback to plain text if markdown parsing fails
