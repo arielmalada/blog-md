@@ -75,6 +75,8 @@ function renderPostCard(post) {
 }
 
 function renderPosts(posts) {
+  console.log('Rendering posts:', posts.length, 'posts found');
+
   if (posts.length === 0) {
     postsGrid.innerHTML = `
       <div class="empty-state">
@@ -82,27 +84,41 @@ function renderPosts(posts) {
         <p>Try adjusting your search terms.</p>
       </div>
     `;
+    console.log('No posts to render - showing empty state');
     return;
   }
 
   postsGrid.innerHTML = posts.map(renderPostCard).join('');
-  
+  console.log('Posts HTML rendered');
+
   // Add click handlers to post cards
   const postCards = postsGrid.querySelectorAll('.post-card');
-  postCards.forEach(card => {
+  console.log('Found post cards:', postCards.length);
+
+  postCards.forEach((card, index) => {
     const postId = card.getAttribute('data-post-id');
-    
+    console.log(`Setting up click handler for post ${index + 1}:`, postId);
+
     // Click handler
-    card.addEventListener('click', () => showPost(postId));
-    
+    card.addEventListener('click', (e) => {
+      console.log('Post clicked:', postId);
+      showPost(postId);
+    });
+
     // Keyboard handler
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        console.log('Post activated via keyboard:', postId);
         showPost(postId);
       }
     });
+
+    // Make sure the card is clickable
+    card.style.cursor = 'pointer';
   });
+
+  console.log('All click handlers attached');
 }
 
 function showHome() {
@@ -116,9 +132,14 @@ function showHome() {
 }
 
 function showPost(postId) {
+  console.log('showPost called with ID:', postId);
   const post = allPosts.find(p => p.id === postId);
-  if (!post) return;
-  
+  if (!post) {
+    console.error('Post not found:', postId);
+    return;
+  }
+
+  console.log('Found post:', post.title);
   currentPost = post;
   currentView = 'post';
   
@@ -129,21 +150,19 @@ function showPost(postId) {
   
   // Parse and render markdown content
   if (typeof marked !== 'undefined') {
-    // Configure marked options
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      sanitize: false
-    });
+    try {
+      // Configure marked options
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+        sanitize: false
+      });
 
-    // Enable emoji support by extending the renderer
-    const renderer = new marked.Renderer();
+      // Parse markdown content first
+      let htmlContent = marked.parse(post.content);
 
-    // Override text rendering to handle emojis
-    const originalTextRenderer = renderer.text.bind(renderer);
-    renderer.text = function(text) {
-      // Convert emoji shortcodes to Unicode emojis
-      text = text
+      // Post-process HTML to replace emoji shortcodes with Unicode emojis
+      htmlContent = htmlContent
         .replace(/:white_check_mark:/g, '✅')
         .replace(/:rocket:/g, '🚀')
         .replace(/:heavy_check_mark:/g, '✔️')
@@ -168,14 +187,14 @@ function showPost(postId) {
         .replace(/:point_right:/g, '👉')
         .replace(/:point_left:/g, '👈');
 
-      return originalTextRenderer(text);
-    };
-
-    // Use the custom renderer
-    marked.setOptions({ renderer: renderer });
-    
-    postContent.innerHTML = marked.parse(post.content);
+      postContent.innerHTML = htmlContent;
+    } catch (error) {
+      console.error('Error rendering markdown:', error);
+      // Fallback to plain text if markdown parsing fails
+      postContent.innerHTML = `<pre>${post.content}</pre>`;
+    }
   } else {
+    console.warn('Marked.js not loaded, using fallback rendering');
     // Fallback if marked.js fails to load
     postContent.innerHTML = `<pre>${post.content}</pre>`;
   }
@@ -316,7 +335,9 @@ async function initializeApp() {
     `;
 
     // Load posts from GitHub
+    console.log('Loading posts from GitHub...');
     allPosts = await githubService.getPosts();
+    console.log('Posts loaded successfully:', allPosts.length, 'posts');
     filteredPosts = [...allPosts];
 
     // Show rate limit info in console (for debugging)
