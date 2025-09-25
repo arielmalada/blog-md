@@ -1,31 +1,6 @@
 // Blog Application JavaScript
 
-// Blog post data embedded directly
-const blogData = {
-  "posts": [
-    {
-      "id": "getting-started-with-markdown",
-      "title": "Getting Started with Markdown",
-      "date": "2024-01-15",
-      "excerpt": "Learn the basics of writing in Markdown format for blogging and documentation.",
-      "content": "# Getting Started with Markdown\n\nMarkdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents.\n\n## Why Use Markdown?\n\nMarkdown has several advantages:\n\n- **Easy to learn** - Simple syntax that's intuitive\n- **Portable** - Files are plain text and work everywhere\n- **Fast to write** - No need for complex formatting tools\n- **Version control friendly** - Works great with Git\n\n## Basic Syntax\n\n### Headers\nUse `#` symbols for headers:\n\n```markdown\n# H1 Header\n## H2 Header\n### H3 Header\n```\n\n### Text Formatting\n- *Italic text* with single asterisks\n- **Bold text** with double asterisks\n- `Code text` with backticks\n\n### Lists\nUnordered lists:\n- Item 1\n- Item 2\n- Item 3\n\nOrdered lists:\n1. First item\n2. Second item\n3. Third item\n\n### Links and Images\n[Link text](http://example.com)\n![Alt text](image.jpg)\n\n### Code Blocks\n```javascript\nfunction hello() {\n    console.log('Hello, world!');\n}\n```\n\n### Blockquotes\n> This is a blockquote. It can span multiple lines and is great for highlighting important information or quotes.\n\n## Conclusion\n\nMarkdown is an excellent choice for writing blog posts because it keeps you focused on content rather than formatting. Give it a try!"
-    },
-    {
-      "id": "web-development-trends-2024",
-      "title": "Web Development Trends in 2024",
-      "date": "2024-02-01",
-      "excerpt": "Explore the latest trends shaping web development in 2024, from AI integration to new frameworks.",
-      "content": "# Web Development Trends in 2024\n\nThe web development landscape continues to evolve rapidly. Here are the key trends defining 2024.\n\n## 1. AI Integration\n\nArtificial Intelligence is becoming deeply integrated into web development:\n\n- **Code generation** tools like GitHub Copilot\n- **Automated testing** and bug detection\n- **Content personalization** engines\n- **Chatbots and virtual assistants**\n\n### Popular AI Tools\n- GitHub Copilot\n- ChatGPT for code assistance\n- Midjourney for design assets\n- Vercel v0 for component generation\n\n## 2. Performance-First Development\n\nWith Core Web Vitals becoming crucial for SEO:\n\n- **Lazy loading** everything\n- **Image optimization** is mandatory\n- **Bundle splitting** and code splitting\n- **Edge computing** and CDN usage\n\n## 3. Component-Driven Architecture\n\nModern applications are built with reusable components:\n\n```javascript\n// Example React component\nfunction BlogPost({ title, content, date }) {\n    return (\n        <article className=\"blog-post\">\n            <h1>{title}</h1>\n            <time>{date}</time>\n            <div dangerouslySetInnerHTML={{__html: content}} />\n        </article>\n    );\n}\n```\n\n## 4. Serverless and Edge Computing\n\n- **Vercel Edge Functions**\n- **Cloudflare Workers**\n- **AWS Lambda@Edge**\n- **Netlify Edge Functions**\n\n## 5. TypeScript Dominance\n\nTypeScript adoption continues to grow:\n\n> \"TypeScript is no longer optional for serious web development projects.\"\n\n### Benefits:\n- Better IDE support\n- Fewer runtime errors\n- Improved refactoring\n- Enhanced team collaboration\n\n## 6. CSS Evolution\n\nNew CSS features are changing how we style:\n\n- **Container queries**\n- **CSS Grid subgrid**\n- **CSS nesting**\n- **Custom properties (CSS variables)**\n\n## Conclusion\n\nStaying current with web development trends is crucial for building modern, performant applications. Focus on learning these technologies to stay competitive in 2024."
-    },
-    {
-      "id": "building-accessible-websites",
-      "title": "Building Accessible Websites",
-      "date": "2024-01-28",
-      "excerpt": "A comprehensive guide to making your websites accessible to all users, including those with disabilities.",
-      "content": "# Building Accessible Websites\n\nWeb accessibility ensures that websites and web applications can be used by everyone, including people with disabilities.\n\n## Why Accessibility Matters\n\nAccessibility is not just about compliance—it's about:\n\n- **Inclusivity** - Ensuring everyone can use your website\n- **Legal compliance** - Meeting ADA and WCAG requirements\n- **Better UX** - Accessible design often improves usability for everyone\n- **SEO benefits** - Search engines favor accessible content\n\n## WCAG Guidelines\n\nThe Web Content Accessibility Guidelines (WCAG) provide four main principles:\n\n### 1. Perceivable\n- Provide text alternatives for images\n- Use sufficient color contrast\n- Make content adaptable to different presentations\n\n```html\n<!-- Good: Alt text for images -->\n<img src=\"chart.png\" alt=\"Sales increased by 25% in Q4 2023\">\n\n<!-- Good: Proper heading structure -->\n<h1>Main Title</h1>\n<h2>Section Title</h2>\n<h3>Subsection Title</h3>\n```\n\n### 2. Operable\n- Make all functionality keyboard accessible\n- Give users enough time to read content\n- Don't use content that causes seizures\n\n### 3. Understandable\n- Make text readable and understandable\n- Make content appear and operate predictably\n- Help users avoid and correct mistakes\n\n### 4. Robust\n- Maximize compatibility with assistive technologies\n\n## Common Accessibility Issues\n\n### Missing Alt Text\n```html\n<!-- Bad -->\n<img src=\"product.jpg\">\n\n<!-- Good -->\n<img src=\"product.jpg\" alt=\"Red laptop computer\">\n```\n\n### Poor Color Contrast\n- Text should have at least 4.5:1 contrast ratio\n- Large text needs at least 3:1 contrast ratio\n- Use tools like WebAIM Contrast Checker\n\n### Keyboard Navigation\nEnsure all interactive elements can be accessed via keyboard:\n\n```css\n/* Visible focus indicators */\nbutton:focus,\na:focus {\n    outline: 2px solid #0066cc;\n    outline-offset: 2px;\n}\n```\n\n## Testing Tools\n\n### Automated Testing\n- **axe-core** - Browser extension and library\n- **Lighthouse** - Built into Chrome DevTools\n- **WAVE** - Web accessibility evaluation tool\n\n### Manual Testing\n1. Navigate using only keyboard (Tab, Enter, Space)\n2. Test with screen reader (NVDA, VoiceOver)\n3. Check color contrast\n4. Validate HTML markup\n\n## Best Practices\n\n### Semantic HTML\nUse proper HTML elements for their intended purpose:\n\n```html\n<!-- Use semantic elements -->\n<nav>...</nav>\n<main>...</main>\n<article>...</article>\n<aside>...</aside>\n<footer>...</footer>\n\n<!-- Use proper form labels -->\n<label for=\"email\">Email Address</label>\n<input type=\"email\" id=\"email\" required>\n```\n\n### ARIA Attributes\nUse ARIA when semantic HTML isn't enough:\n\n```html\n<!-- ARIA labels -->\n<button aria-label=\"Close dialog\">×</button>\n\n<!-- ARIA landmarks -->\n<div role=\"banner\">Header content</div>\n<div role=\"main\">Main content</div>\n```\n\n## Conclusion\n\nBuilding accessible websites is an ongoing process that requires attention to detail and regular testing. Start with semantic HTML, ensure keyboard navigation works, provide proper alt text, and test with real users when possible.\n\nRemember: accessibility benefits everyone, not just users with disabilities."
-    }
-  ]
-};
+// GitHub service is now initialized in github-service.js and available as window.githubService
 
 // Application state
 let currentView = 'home';
@@ -292,13 +267,60 @@ function setupEventListeners() {
 }
 
 // Initialize application
-function initializeApp() {
-  // Load posts data
-  allPosts = [...blogData.posts];
-  filteredPosts = [...allPosts];
-  
-  // Set up event listeners
-  setupEventListeners();
+async function initializeApp() {
+  try {
+    // Show loading state
+    postsGrid.innerHTML = `
+      <div class="loading-state">
+        <h3>Loading posts...</h3>
+        <p>Fetching latest content from GitHub</p>
+      </div>
+    `;
+
+    // Load posts from GitHub
+    allPosts = await githubService.getPosts();
+    filteredPosts = [...allPosts];
+
+    // Show rate limit info in console (for debugging)
+    const rateLimit = githubService.getRateLimitStatus();
+    console.log(`GitHub API Rate Limit: ${rateLimit.remaining} requests remaining, resets in ${rateLimit.resetInMinutes} minutes`);
+
+    // Set up event listeners
+    setupEventListeners();
+
+  } catch (error) {
+    console.error('Error initializing app:', error);
+    postsGrid.innerHTML = `
+      <div class="error-state">
+        <h3>Unable to load posts</h3>
+        <p>There was an error fetching content from GitHub. Loading local files as fallback...</p>
+        <p><small>Error: ${error.message}</small></p>
+        <p><small>Note: This blog works with both public and private repositories.</small></p>
+      </div>
+    `;
+
+    // Give a moment for the user to see the message, then retry
+    setTimeout(async () => {
+      try {
+        allPosts = await githubService.getPostsFromLocalFiles();
+        filteredPosts = [...allPosts];
+        renderPosts(filteredPosts);
+        console.log('Successfully loaded from local files');
+      } catch (fallbackError) {
+        console.error('Fallback also failed:', fallbackError);
+        postsGrid.innerHTML = `
+          <div class="error-state">
+            <h3>Unable to load posts</h3>
+            <p>Both GitHub API and local files failed. Please check your setup.</p>
+            <p><small>GitHub Error: ${error.message}</small></p>
+            <p><small>Local Error: ${fallbackError.message}</small></p>
+          </div>
+        `;
+      }
+    }, 2000);
+
+    return;
+  }
   
   // Handle initial route
   const hash = window.location.hash;
@@ -326,6 +348,12 @@ if (document.readyState === 'loading') {
 } else {
   initializeApp();
 }
+
+// Debug: Check if githubService is available
+window.addEventListener('load', () => {
+  console.log('GitHub Service loaded:', typeof window.githubService);
+  console.log('GitHub Service instance:', window.githubService ? 'Available' : 'Not available');
+});
 
 // Error handling for marked.js loading
 window.addEventListener('error', (e) => {
