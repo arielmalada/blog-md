@@ -135,13 +135,15 @@ function showPost(postId) {
   // Parse and render markdown content
   if (typeof marked !== 'undefined') {
     try {
-      // Configure marked options
+      // Configure marked options with emoji support
+      marked.use(markedEmoji());
       marked.setOptions({
         breaks: true,
         gfm: true,
         sanitize: false
       });
 
+      // Use marked with emoji support
       postContent.innerHTML = marked.parse(post.content);
     } catch (error) {
       console.error('Error rendering markdown:', error);
