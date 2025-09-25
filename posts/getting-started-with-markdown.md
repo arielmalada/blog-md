@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Markdown
-date: 2024-01-15
+date: 2025-09-25
 excerpt: Learn the basics of writing in Markdown format for blogging and documentation.
 ---
 
