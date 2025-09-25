@@ -135,8 +135,7 @@ function showPost(postId) {
   // Parse and render markdown content
   if (typeof marked !== 'undefined') {
     try {
-      // Configure marked options with emoji support
-      marked.use(markedEmoji());
+      // Configure marked options
       marked.setOptions({
         breaks: true,
         gfm: true,

@@ -22,12 +22,12 @@ Obsidian is a:
 
 ### Benefits of This Setup:
 
-- :white_check_mark: **Write in Obsidian** - Use your favorite writing environment
-- :white_check_mark: **Markdown native** - No conversion needed
-- :white_check_mark: **Git integration** - Version control for your posts
-- :white_check_mark: **Automatic publishing** - Push to publish
-- :white_check_mark: **Local development** - See changes before publishing
-- :white_check_mark: **Plugin ecosystem** - Extend functionality as needed
+- **Write in Obsidian** - Use your favorite writing environment
+- **Markdown native** - No conversion needed
+- **Git integration** - Version control for your posts
+- **Automatic publishing** - Push to publish
+- **Local development** - See changes before publishing
+- **Plugin ecosystem** - Extend functionality as needed
 
 ## Method 1: GitHub Integration Plugin
 
