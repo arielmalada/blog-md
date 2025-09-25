@@ -75,8 +75,6 @@ function renderPostCard(post) {
 }
 
 function renderPosts(posts) {
-  console.log('Rendering posts:', posts.length, 'posts found');
-
   if (posts.length === 0) {
     postsGrid.innerHTML = `
       <div class="empty-state">
@@ -84,24 +82,18 @@ function renderPosts(posts) {
         <p>Try adjusting your search terms.</p>
       </div>
     `;
-    console.log('No posts to render - showing empty state');
     return;
   }
 
   postsGrid.innerHTML = posts.map(renderPostCard).join('');
-  console.log('Posts HTML rendered');
 
   // Add click handlers to post cards
   const postCards = postsGrid.querySelectorAll('.post-card');
-  console.log('Found post cards:', postCards.length);
-
-  postCards.forEach((card, index) => {
+  postCards.forEach(card => {
     const postId = card.getAttribute('data-post-id');
-    console.log(`Setting up click handler for post ${index + 1}:`, postId);
 
     // Click handler
     card.addEventListener('click', (e) => {
-      console.log('Post clicked:', postId);
       showPost(postId);
     });
 
@@ -109,7 +101,6 @@ function renderPosts(posts) {
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        console.log('Post activated via keyboard:', postId);
         showPost(postId);
       }
     });
@@ -117,8 +108,6 @@ function renderPosts(posts) {
     // Make sure the card is clickable
     card.style.cursor = 'pointer';
   });
-
-  console.log('All click handlers attached');
 }
 
 function showHome() {
@@ -132,14 +121,9 @@ function showHome() {
 }
 
 function showPost(postId) {
-  console.log('showPost called with ID:', postId);
   const post = allPosts.find(p => p.id === postId);
-  if (!post) {
-    console.error('Post not found:', postId);
-    return;
-  }
+  if (!post) return;
 
-  console.log('Found post:', post.title);
   currentPost = post;
   currentView = 'post';
   
@@ -335,9 +319,7 @@ async function initializeApp() {
     `;
 
     // Load posts from GitHub
-    console.log('Loading posts from GitHub...');
     allPosts = await githubService.getPosts();
-    console.log('Posts loaded successfully:', allPosts.length, 'posts');
     filteredPosts = [...allPosts];
 
     // Show rate limit info in console (for debugging)
