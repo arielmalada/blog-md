@@ -135,6 +135,44 @@ function showPost(postId) {
       gfm: true,
       sanitize: false
     });
+
+    // Enable emoji support by extending the renderer
+    const renderer = new marked.Renderer();
+
+    // Override text rendering to handle emojis
+    const originalTextRenderer = renderer.text.bind(renderer);
+    renderer.text = function(text) {
+      // Convert emoji shortcodes to Unicode emojis
+      text = text
+        .replace(/:white_check_mark:/g, '✅')
+        .replace(/:rocket:/g, '🚀')
+        .replace(/:heavy_check_mark:/g, '✔️')
+        .replace(/:x:/g, '❌')
+        .replace(/:star:/g, '⭐')
+        .replace(/:arrow_right:/g, '➡️')
+        .replace(/:gear:/g, '⚙️')
+        .replace(/:book:/g, '📚')
+        .replace(/:computer:/g, '💻')
+        .replace(/:chart_with_upwards_trend:/g, '📈')
+        .replace(/:link:/g, '🔗')
+        .replace(/:warning:/g, '⚠️')
+        .replace(/:information_source:/g, 'ℹ️')
+        .replace(/:bulb:/g, '💡')
+        .replace(/:memo:/g, '📝')
+        .replace(/:package:/g, '📦')
+        .replace(/:zap:/g, '⚡')
+        .replace(/:tada:/g, '🎉')
+        .replace(/:100:/g, '💯')
+        .replace(/:thumbsup:/g, '👍')
+        .replace(/:thumbsdown:/g, '👎')
+        .replace(/:point_right:/g, '👉')
+        .replace(/:point_left:/g, '👈');
+
+      return originalTextRenderer(text);
+    };
+
+    // Use the custom renderer
+    marked.setOptions({ renderer: renderer });
     
     postContent.innerHTML = marked.parse(post.content);
   } else {
